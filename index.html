@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matheus Balieiro — NumberTex</title>
+  <meta name="description" content="Independent B2B Commercial Intermediary. Connecting buyers and suppliers across selected B2B markets." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #C41E1E;
+      --red-dark: #a01818;
+      --black: #111111;
+      --gray-900: #1a1a1a;
+      --gray-700: #444444;
+      --gray-500: #888888;
+      --gray-200: #e4e4e4;
+      --gray-100: #f2f2f0;
+      --gray-50: #f8f8f6;
+      --white: #ffffff;
+      --max-w: 720px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-900);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ── DIVIDER ── */
+    hr.section-rule {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION LABEL ── */
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* Larger label for Our Approach */
+    .label-lg {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 96px 0 80px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .hero-logo {
+      margin-bottom: 52px;
+    }
+
+    .hero-logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--gray-700);
+      max-width: 540px;
+      margin-bottom: 44px;
+      line-height: 1.65;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-cta:hover {
+      background: var(--red-dark);
+    }
+
+    /* ── WHAT I DO ── */
+    #what {
+      background: var(--gray-50);
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--red);
+      margin-bottom: 32px;
+    }
+
+    .section-title.black {
+      color: var(--black);
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+
+    .bullet-list li::before {
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      width: 18px;
+      height: 1px;
+      background: var(--red);
+      margin-top: 10px;
+    }
+
+    /* ── NICHES ── */
+    #niches {
+      background: var(--white);
+    }
+
+    .niches-text {
+      font-size: 16px;
+      color: var(--gray-700);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── HOW I WORK ── */
+    #how {
+      background: var(--gray-50);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .step:first-child {
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--red);
+      letter-spacing: 0.06em;
+      padding-top: 2px;
+    }
+
+    .step-text {
+      font-size: 16px;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+
+    /* ── BENEFITS ── */
+    #benefits {
+      background: var(--black);
+    }
+
+    #benefits .label {
+      color: var(--red);
+    }
+
+    #benefits .section-title {
+      color: var(--white);
+    }
+
+    #benefits .bullet-list li {
+      color: #cccccc;
+    }
+
+    #benefits .bullet-list li::before {
+      background: var(--red);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--white);
+    }
+
+    .contact-intro {
+      font-size: 16px;
+      color: var(--gray-700);
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .contact-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-value:hover {
+      color: var(--red);
+    }
+
+    .contact-identity {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .contact-identity .hero-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+
+    .contact-identity .hero-role {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray-500);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-200);
+      padding: 36px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .footer-left strong {
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .footer-right {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gray-500);
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      section { padding: 60px 0; }
+      #hero { padding: 72px 0 60px; }
+      .hero-logo { margin-bottom: 40px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-logo">
+        <img src="logo.png" alt="NumberTex" />
+      </div>
+      <h1 class="hero-headline">Connecting buyers and suppliers across selected B2B markets.</h1>
+      <p class="hero-sub">Independent commercial intermediary focused on sourcing, qualification, and first-stage deal coordination.</p>
+      <a href="#contact" class="btn-cta">Contact</a>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- WHAT I DO -->
+  <section id="what">
+    <div class="container">
+      <h2 class="section-title black">Solutions</h2>
+      <ul class="bullet-list">
+        <li>Build market maps around specific commercial niches.</li>
+        <li>Research selected markets and commercial niches.</li>
+        <li>Identify relevant buyers and suppliers.</li>
+        <li>Qualify opportunities before introductions.</li>
+        <li>Support early-stage negotiation flow.</li>
+        <li>Help keep the process clear and structured.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- MARKETS -->
+  <section id="niches">
+    <div class="container">
+      <h2 class="section-title black">Markets</h2>
+      <p class="niches-text">NumberTex works across selected B2B niches, including industrial materials, commodities in general, packaging and paper-related materials, manufacturing components, and export-oriented commercial opportunities.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- OUR APPROACH -->
+  <section id="how">
+    <div class="container">
+      <span class="label-lg">Our Approach</span>
+      <h2 class="section-title black">Step by Step</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <p class="step-text">Build market maps around specific commercial niches.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <p class="step-text">Study the market, identify relevant opportunities, and define the commercial fit.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <p class="step-text">Qualification.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <p class="step-text">Introduction and follow-up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="container">
+      <h2 class="section-title">Benefits</h2>
+      <ul class="bullet-list">
+        <li>Personal attention to each opportunity.</li>
+        <li>A lean structure with no unnecessary layers.</li>
+        <li>Clear communication from first contact to follow-up.</li>
+        <li>Focus on qualified opportunities, not noise.</li>
+        <li>Built for companies that want direct and efficient outreach.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-intro">If you are a buyer, supplier, or company exploring commercial opportunities, feel free to reach out.</p>
+      <div class="contact-links">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:matheus@numbertex.com" class="contact-value">matheus@numbertex.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">WhatsApp</span>
+          <a href="https://wa.me/351966934862" class="contact-value" target="_blank" rel="noopener">+351 966 934 862</a>
+        </div>
+      </div>
+      <div class="contact-identity">
+        <p class="hero-name">Matheus Balieiro</p>
+        <p class="hero-role">Independent B2B Commercial Intermediary</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <strong>Matheus Balieiro</strong><br />
+          matheus@numbertex.com · Portugal
+        </div>
+        <img src="logo.png" alt="NumberTex" style="height:32px;width:auto;display:block;" />
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
