@@ -19,10 +19,9 @@
       --gray-700: #444444;
       --gray-500: #888888;
       --gray-200: #e4e4e4;
-      --gray-100: #f2f2f0;
       --gray-50: #f8f8f6;
       --white: #ffffff;
-      --max-w: 720px;
+      --max-w: 900px;
     }
 
     html { scroll-behavior: smooth; }
@@ -40,11 +39,17 @@
     .container {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 36px;
     }
 
-    section {
-      padding: 80px 0;
+    section { padding: 80px 0; }
+
+    /* ── SECTION HOVER BRIGHTEN ── */
+    section, footer {
+      transition: filter 0.3s ease;
+    }
+    section:hover, footer:hover {
+      filter: brightness(1.05);
     }
 
     /* ── DIVIDER ── */
@@ -55,7 +60,69 @@
       margin: 0 auto;
     }
 
-    /* ── SECTION LABEL ── */
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-bar {
+      position: fixed;
+      top: 18px;
+      right: 28px;
+      z-index: 100;
+    }
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      user-select: none;
+    }
+    .lang-btn:hover { background: var(--red-dark); }
+    .lang-btn svg {
+      width: 10px; height: 6px;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .lang-bar.open .lang-btn svg { transform: rotate(180deg); }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      background: #cecece;
+      min-width: 168px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+    }
+    .lang-bar.open .lang-dropdown { display: block; }
+
+    .lang-option {
+      display: block;
+      width: 100%;
+      padding: 11px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .lang-option:hover { background: #bebebe; }
+    .lang-option.active { color: var(--red); }
+
+    /* ── LABELS ── */
     .label {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 12px;
@@ -66,8 +133,6 @@
       margin-bottom: 10px;
       display: block;
     }
-
-    /* Larger label for Our Approach */
     .label-lg {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px;
@@ -79,24 +144,34 @@
       display: block;
     }
 
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--red);
+      margin-bottom: 32px;
+    }
+    .section-title.black { color: var(--black); }
+
     /* ── HERO ── */
     #hero {
-      padding: 96px 0 80px;
+      padding: 48px 0 80px;
       background: var(--white);
       border-bottom: 1px solid var(--gray-200);
     }
-
     .hero-logo {
-      margin-bottom: 52px;
+      margin-bottom: 48px;
+      display: flex;
+      justify-content: flex-start;
     }
-
     .hero-logo img {
       height: 330px;
       width: auto;
       max-width: 100%;
       display: block;
     }
-
     .hero-headline {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: clamp(32px, 5vw, 46px);
@@ -107,7 +182,6 @@
       margin-bottom: 20px;
       max-width: 600px;
     }
-
     .hero-sub {
       font-size: 19px;
       font-weight: 300;
@@ -116,7 +190,6 @@
       margin-bottom: 44px;
       line-height: 1.65;
     }
-
     .btn-cta {
       display: inline-block;
       background: var(--red);
@@ -130,28 +203,10 @@
       padding: 14px 36px;
       transition: background 0.2s ease;
     }
+    .btn-cta:hover { background: var(--red-dark); }
 
-    .btn-cta:hover {
-      background: var(--red-dark);
-    }
-
-    /* ── WHAT I DO ── */
-    #what {
-      background: var(--gray-50);
-    }
-
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: var(--red);
-      margin-bottom: 32px;
-    }
-
-    .section-title.black {
-      color: var(--black);
-    }
+    /* ── SOLUTIONS ── */
+    #what { background: var(--gray-50); }
 
     .bullet-list {
       list-style: none;
@@ -159,7 +214,6 @@
       flex-direction: column;
       gap: 13px;
     }
-
     .bullet-list li {
       display: flex;
       align-items: flex-start;
@@ -169,7 +223,6 @@
       color: var(--gray-700);
       line-height: 1.55;
     }
-
     .bullet-list li::before {
       content: '';
       display: block;
@@ -180,29 +233,32 @@
       margin-top: 10px;
     }
 
-    /* ── NICHES ── */
-    #niches {
-      background: var(--white);
-    }
-
+    /* ── MARKETS (dark) ── */
+    #niches { background: var(--black); }
+    #niches .section-title { color: var(--white); }
     .niches-text {
       font-size: 16px;
-      color: var(--gray-700);
+      color: #cccccc;
       max-width: 560px;
       line-height: 1.75;
     }
 
-    /* ── HOW I WORK ── */
-    #how {
-      background: var(--gray-50);
+    /* ── OUR APPROACH ── */
+    #how { background: var(--gray-50); }
+    .how-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
     }
-
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .how-left {
+      font-size: 15px;
+      color: var(--gray-700);
+      line-height: 1.8;
     }
+    .how-left p + p { margin-top: 16px; }
 
+    .steps { display: flex; flex-direction: column; }
     .step {
       display: grid;
       grid-template-columns: 32px 1fr;
@@ -211,11 +267,7 @@
       padding: 18px 0;
       border-bottom: 1px solid var(--gray-200);
     }
-
-    .step:first-child {
-      border-top: 1px solid var(--gray-200);
-    }
-
+    .step:first-child { border-top: 1px solid var(--gray-200); }
     .step-num {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 12px;
@@ -224,7 +276,6 @@
       letter-spacing: 0.06em;
       padding-top: 2px;
     }
-
     .step-text {
       font-size: 16px;
       color: var(--gray-700);
@@ -232,31 +283,13 @@
     }
 
     /* ── BENEFITS ── */
-    #benefits {
-      background: var(--black);
-    }
-
-    #benefits .label {
-      color: var(--red);
-    }
-
-    #benefits .section-title {
-      color: var(--white);
-    }
-
-    #benefits .bullet-list li {
-      color: #cccccc;
-    }
-
-    #benefits .bullet-list li::before {
-      background: var(--red);
-    }
+    #benefits { background: var(--black); }
+    #benefits .section-title { color: var(--white); }
+    #benefits .bullet-list li { color: #cccccc; }
+    #benefits .bullet-list li::before { background: var(--red); }
 
     /* ── CONTACT ── */
-    #contact {
-      background: var(--white);
-    }
-
+    #contact { background: var(--white); }
     .contact-intro {
       font-size: 16px;
       color: var(--gray-700);
@@ -264,19 +297,8 @@
       margin-bottom: 36px;
       line-height: 1.7;
     }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-item { display: flex; align-items: center; gap: 14px; }
     .contact-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 11px;
@@ -287,7 +309,6 @@
       width: 80px;
       flex-shrink: 0;
     }
-
     .contact-value {
       font-size: 16px;
       font-weight: 500;
@@ -295,17 +316,12 @@
       text-decoration: none;
       transition: color 0.15s;
     }
-
-    .contact-value:hover {
-      color: var(--red);
-    }
-
+    .contact-value:hover { color: var(--red); }
     .contact-identity {
       margin-top: 36px;
       padding-top: 28px;
       border-top: 1px solid var(--gray-200);
     }
-
     .contact-identity .hero-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 18px;
@@ -314,7 +330,6 @@
       color: var(--black);
       margin-bottom: 2px;
     }
-
     .contact-identity .hero-role {
       font-size: 13px;
       font-weight: 400;
@@ -328,7 +343,6 @@
       border-top: 1px solid var(--gray-200);
       padding: 36px 0;
     }
-
     .footer-inner {
       display: flex;
       justify-content: space-between;
@@ -336,37 +350,48 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-
     .footer-left {
       font-size: 13px;
       color: var(--gray-500);
       line-height: 1.6;
     }
-
     .footer-left strong {
       font-weight: 600;
       color: var(--gray-700);
     }
 
-    .footer-right {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--gray-500);
-      text-transform: uppercase;
-    }
-
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       section { padding: 60px 0; }
-      #hero { padding: 72px 0 60px; }
-      .hero-logo { margin-bottom: 40px; }
+      #hero { padding: 36px 0 60px; }
+      .how-inner { grid-template-columns: 1fr; gap: 36px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .lang-bar { top: 12px; right: 16px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- LANGUAGE SWITCHER -->
+  <div class="lang-bar" id="langBar">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+      <span id="langLabel">Languages</span>
+      <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L5 5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-option active" onclick="setLang('en')">English</button>
+      <button class="lang-option" onclick="setLang('pt')">Português</button>
+      <button class="lang-option" onclick="setLang('es')">Español</button>
+      <button class="lang-option" onclick="setLang('fr')">Français</button>
+      <button class="lang-option" onclick="setLang('it')">Italiano</button>
+      <button class="lang-option" onclick="setLang('de')">Deutsch</button>
+      <button class="lang-option" onclick="setLang('zh')">中文</button>
+      <button class="lang-option" onclick="setLang('ru')">Русский</button>
+      <button class="lang-option" onclick="setLang('vi')">Tiếng Việt</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
@@ -374,62 +399,66 @@
       <div class="hero-logo">
         <img src="logo.png" alt="NumberTex" />
       </div>
-      <h1 class="hero-headline">Connecting buyers and suppliers across selected B2B markets.</h1>
-      <p class="hero-sub">Independent commercial intermediary focused on sourcing, qualification, and first-stage deal coordination.</p>
-      <a href="#contact" class="btn-cta">Contact</a>
+      <h1 class="hero-headline" data-i18n="hero_headline">Connecting buyers and suppliers across selected B2B markets.</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Independent commercial intermediary focused on sourcing, qualification, and first-stage deal coordination.</p>
+      <a href="#contact" class="btn-cta" data-i18n="cta">Contact</a>
     </div>
   </section>
 
   <hr class="section-rule" />
 
-  <!-- WHAT I DO -->
+  <!-- SOLUTIONS -->
   <section id="what">
     <div class="container">
-      <h2 class="section-title black">Solutions</h2>
+      <h2 class="section-title black" data-i18n="solutions_title">Solutions</h2>
       <ul class="bullet-list">
-        <li>Build market maps around specific commercial niches.</li>
-        <li>Research selected markets and commercial niches.</li>
-        <li>Identify relevant buyers and suppliers.</li>
-        <li>Qualify opportunities before introductions.</li>
-        <li>Support early-stage negotiation flow.</li>
-        <li>Help keep the process clear and structured.</li>
+        <li data-i18n="sol1">Build market maps around specific commercial niches.</li>
+        <li data-i18n="sol2">Research selected markets and commercial niches.</li>
+        <li data-i18n="sol3">Identify relevant buyers and suppliers.</li>
+        <li data-i18n="sol4">Qualify opportunities before introductions.</li>
+        <li data-i18n="sol5">Support early-stage negotiation flow.</li>
+        <li data-i18n="sol6">Help keep the process clear and structured.</li>
       </ul>
     </div>
   </section>
 
-  <hr class="section-rule" />
-
   <!-- MARKETS -->
   <section id="niches">
     <div class="container">
-      <h2 class="section-title black">Markets</h2>
-      <p class="niches-text">NumberTex works across selected B2B niches, including industrial materials, commodities in general, packaging and paper-related materials, manufacturing components, and export-oriented commercial opportunities.</p>
+      <h2 class="section-title" data-i18n="markets_title">Markets</h2>
+      <p class="niches-text" data-i18n="markets_body">NumberTex works across selected B2B niches, including industrial materials, commodities in general, packaging and paper-related materials, manufacturing components, and export-oriented commercial opportunities.</p>
     </div>
   </section>
-
-  <hr class="section-rule" />
 
   <!-- OUR APPROACH -->
   <section id="how">
     <div class="container">
-      <span class="label-lg">Our Approach</span>
-      <h2 class="section-title black">Step by Step</h2>
-      <div class="steps">
-        <div class="step">
-          <span class="step-num">01</span>
-          <p class="step-text">Build market maps around specific commercial niches.</p>
+      <span class="label-lg" data-i18n="approach_label">Our Approach</span>
+      <h2 class="section-title black" data-i18n="approach_title">Step by Step</h2>
+      <div class="how-inner">
+        <div class="how-left">
+          <p data-i18n="how_p1">NumberTex focuses on high‑conversion, low‑friction trade intermediation between buyers and suppliers in selected B2B niches. The process starts with clear objectives and ends with a structured path from lead to conversation. By focusing on qualified opportunities and removing unnecessary intermediaries, the model delivers maximum conversion for export and sourcing opportunities.</p>
+          <p data-i18n="how_p2">The first step is to build a clear map of the target market, identifying real buyers and suppliers that match product, price, and logistics. Once the right profiles are identified, they are qualified on volume, payment terms, Incoterms, and basic fit before any formal introduction.</p>
+          <p data-i18n="how_p3">After validation, the focus on maximum conversion begins. The introduction is made with clear, documented terms, and the follow‑up keeps the commercial discussion moving forward. There are no unnecessary layers and no over‑promising. The result is a lean, direct, and practical path from first contact to real B2B trade.</p>
+          <p data-i18n="how_p4">This approach is particularly effective for companies in export, sourcing, industrial materials, and commodities, where fast, accurate intermediation significantly increases the chance of closing a deal.</p>
         </div>
-        <div class="step">
-          <span class="step-num">02</span>
-          <p class="step-text">Study the market, identify relevant opportunities, and define the commercial fit.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">03</span>
-          <p class="step-text">Qualification.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">04</span>
-          <p class="step-text">Introduction and follow-up.</p>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">01</span>
+            <p class="step-text" data-i18n="step1">Build market maps around specific commercial niches.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <p class="step-text" data-i18n="step2">Study the market, identify relevant opportunities, and define the commercial fit.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <p class="step-text" data-i18n="step3">Qualification.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">04</span>
+            <p class="step-text" data-i18n="step4">Introduction and follow-up.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -438,13 +467,13 @@
   <!-- BENEFITS -->
   <section id="benefits">
     <div class="container">
-      <h2 class="section-title">Benefits</h2>
+      <h2 class="section-title" data-i18n="benefits_title">Benefits</h2>
       <ul class="bullet-list">
-        <li>Personal attention to each opportunity.</li>
-        <li>A lean structure with no unnecessary layers.</li>
-        <li>Clear communication from first contact to follow-up.</li>
-        <li>Focus on qualified opportunities, not noise.</li>
-        <li>Built for companies that want direct and efficient outreach.</li>
+        <li data-i18n="ben1">Personal attention to each opportunity.</li>
+        <li data-i18n="ben2">A lean structure with no unnecessary layers.</li>
+        <li data-i18n="ben3">Clear communication from first contact to follow-up.</li>
+        <li data-i18n="ben4">Focus on qualified opportunities, not noise.</li>
+        <li data-i18n="ben5">Built for companies that want direct and efficient outreach.</li>
       </ul>
     </div>
   </section>
@@ -452,11 +481,11 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <p class="contact-intro">If you are a buyer, supplier, or company exploring commercial opportunities, feel free to reach out.</p>
+      <h2 class="section-title" data-i18n="contact_title">Contact</h2>
+      <p class="contact-intro" data-i18n="contact_intro">If you are a buyer, supplier, or company exploring commercial opportunities, feel free to reach out.</p>
       <div class="contact-links">
         <div class="contact-item">
-          <span class="contact-label">Email</span>
+          <span class="contact-label" data-i18n="lbl_email">Email</span>
           <a href="mailto:matheus@numbertex.com" class="contact-value">matheus@numbertex.com</a>
         </div>
         <div class="contact-item">
@@ -466,7 +495,7 @@
       </div>
       <div class="contact-identity">
         <p class="hero-name">Matheus Balieiro</p>
-        <p class="hero-role">Independent B2B Commercial Intermediary</p>
+        <p class="hero-role" data-i18n="hero_role">Independent B2B Commercial Intermediary</p>
       </div>
     </div>
   </section>
@@ -476,7 +505,7 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-left">
-          <strong>Matheus Balieiro</strong><br />
+          <strong>NumberTex</strong><br />
           matheus@numbertex.com · Portugal
         </div>
         <img src="logo.png" alt="NumberTex" style="height:160px;width:auto;display:block;" />
@@ -484,5 +513,60 @@
     </div>
   </footer>
 
+  <script>
+    const translations = {
+      en: {
+        lang_btn:"Languages",hero_headline:"Connecting buyers and suppliers across selected B2B markets.",hero_sub:"Independent commercial intermediary focused on sourcing, qualification, and first-stage deal coordination.",cta:"Contact",hero_role:"Independent B2B Commercial Intermediary",solutions_title:"Solutions",sol1:"Build market maps around specific commercial niches.",sol2:"Research selected markets and commercial niches.",sol3:"Identify relevant buyers and suppliers.",sol4:"Qualify opportunities before introductions.",sol5:"Support early-stage negotiation flow.",sol6:"Help keep the process clear and structured.",markets_title:"Markets",markets_body:"NumberTex works across selected B2B niches, including industrial materials, commodities in general, packaging and paper-related materials, manufacturing components, and export-oriented commercial opportunities.",approach_label:"Our Approach",approach_title:"Step by Step",how_p1:"NumberTex focuses on high‑conversion, low‑friction trade intermediation between buyers and suppliers in selected B2B niches. The process starts with clear objectives and ends with a structured path from lead to conversation. By focusing on qualified opportunities and removing unnecessary intermediaries, the model delivers maximum conversion for export and sourcing opportunities.",how_p2:"The first step is to build a clear map of the target market, identifying real buyers and suppliers that match product, price, and logistics. Once the right profiles are identified, they are qualified on volume, payment terms, Incoterms, and basic fit before any formal introduction.",how_p3:"After validation, the focus on maximum conversion begins. The introduction is made with clear, documented terms, and the follow‑up keeps the commercial discussion moving forward. There are no unnecessary layers and no over‑promising. The result is a lean, direct, and practical path from first contact to real B2B trade.",how_p4:"This approach is particularly effective for companies in export, sourcing, industrial materials, and commodities, where fast, accurate intermediation significantly increases the chance of closing a deal.",step1:"Build market maps around specific commercial niches.",step2:"Study the market, identify relevant opportunities, and define the commercial fit.",step3:"Qualification.",step4:"Introduction and follow-up.",benefits_title:"Benefits",ben1:"Personal attention to each opportunity.",ben2:"A lean structure with no unnecessary layers.",ben3:"Clear communication from first contact to follow-up.",ben4:"Focus on qualified opportunities, not noise.",ben5:"Built for companies that want direct and efficient outreach.",contact_title:"Contact",contact_intro:"If you are a buyer, supplier, or company exploring commercial opportunities, feel free to reach out.",lbl_email:"Email"
+      },
+      pt: {
+        lang_btn:"Idiomas",hero_headline:"A ligar compradores e fornecedores em mercados B2B selecionados.",hero_sub:"Intermediário comercial independente focado em sourcing, qualificação e coordenação de negócios na fase inicial.",cta:"Contacto",hero_role:"Intermediário Comercial B2B Independente",solutions_title:"Soluções",sol1:"Construir mapas de mercado em nichos comerciais específicos.",sol2:"Pesquisar mercados e nichos comerciais selecionados.",sol3:"Identificar compradores e fornecedores relevantes.",sol4:"Qualificar oportunidades antes das apresentações.",sol5:"Apoiar o fluxo de negociação na fase inicial.",sol6:"Ajudar a manter o processo claro e estruturado.",markets_title:"Mercados",markets_body:"A NumberTex atua em nichos B2B selecionados, incluindo materiais industriais, commodities em geral, embalagens e materiais relacionados com papel, componentes de fabrico e oportunidades comerciais orientadas para a exportação.",approach_label:"A Nossa Abordagem",approach_title:"Passo a Passo",how_p1:"A NumberTex foca-se na intermediação comercial de alta conversão e baixo atrito entre compradores e fornecedores em nichos B2B selecionados. O processo começa com objetivos claros e termina com um caminho estruturado do lead à conversa.",how_p2:"O primeiro passo é construir um mapa claro do mercado-alvo, identificando compradores e fornecedores reais que correspondam ao produto, preço e logística. Uma vez identificados os perfis certos, são qualificados em volume, condições de pagamento, Incoterms e adequação básica antes de qualquer introdução formal.",how_p3:"Após a validação, o foco na conversão máxima começa. A introdução é feita com termos claros e documentados, e o acompanhamento mantém a discussão comercial em movimento. Não há camadas desnecessárias nem promessas excessivas. O resultado é um caminho lean, direto e prático do primeiro contacto ao comércio B2B real.",how_p4:"Esta abordagem é particularmente eficaz para empresas em exportação, sourcing, materiais industriais e commodities, onde a intermediação rápida e precisa aumenta significativamente a probabilidade de fechar um negócio.",step1:"Construir mapas de mercado em nichos comerciais específicos.",step2:"Estudar o mercado, identificar oportunidades relevantes e definir o fit comercial.",step3:"Qualificação.",step4:"Introdução e acompanhamento.",benefits_title:"Benefícios",ben1:"Atenção personalizada a cada oportunidade.",ben2:"Uma estrutura lean sem camadas desnecessárias.",ben3:"Comunicação clara do primeiro contacto ao acompanhamento.",ben4:"Foco em oportunidades qualificadas, não em ruído.",ben5:"Criado para empresas que querem uma abordagem direta e eficiente.",contact_title:"Contacto",contact_intro:"Se é comprador, fornecedor ou empresa a explorar oportunidades comerciais, não hesite em contactar.",lbl_email:"Email"
+      },
+      es: {
+        lang_btn:"Idiomas",hero_headline:"Conectando compradores y proveedores en mercados B2B seleccionados.",hero_sub:"Intermediario comercial independiente enfocado en abastecimiento, calificación y coordinación de acuerdos en etapa inicial.",cta:"Contacto",hero_role:"Intermediario Comercial B2B Independiente",solutions_title:"Soluciones",sol1:"Construir mapas de mercado en nichos comerciales específicos.",sol2:"Investigar mercados y nichos comerciales seleccionados.",sol3:"Identificar compradores y proveedores relevantes.",sol4:"Calificar oportunidades antes de las presentaciones.",sol5:"Apoyar el flujo de negociación en etapa temprana.",sol6:"Ayudar a mantener el proceso claro y estructurado.",markets_title:"Mercados",markets_body:"NumberTex opera en nichos B2B seleccionados, incluyendo materiales industriales, materias primas en general, embalaje y materiales relacionados con el papel, componentes de fabricación y oportunidades comerciales orientadas a la exportación.",approach_label:"Nuestro Enfoque",approach_title:"Paso a Paso",how_p1:"NumberTex se centra en la intermediación comercial de alta conversión y bajo roce entre compradores y proveedores en nichos B2B seleccionados. El proceso comienza con objetivos claros y termina con un camino estructurado del lead a la conversación.",how_p2:"El primer paso es construir un mapa claro del mercado objetivo, identificando compradores y proveedores reales que coincidan con el producto, precio y logística. Una vez identificados los perfiles correctos, se califican en volumen, condiciones de pago, Incoterms y ajuste básico antes de cualquier presentación formal.",how_p3:"Tras la validación, comienza el enfoque en la conversión máxima. La presentación se realiza con términos claros y documentados, y el seguimiento mantiene la discusión comercial en movimiento. No hay capas innecesarias ni promesas excesivas.",how_p4:"Este enfoque es especialmente eficaz para empresas en exportación, abastecimiento, materiales industriales y materias primas, donde la intermediación rápida y precisa aumenta significativamente las posibilidades de cerrar un trato.",step1:"Construir mapas de mercado en nichos comerciales específicos.",step2:"Estudiar el mercado, identificar oportunidades relevantes y definir el encaje comercial.",step3:"Calificación.",step4:"Presentación y seguimiento.",benefits_title:"Beneficios",ben1:"Atención personal a cada oportunidad.",ben2:"Una estructura lean sin capas innecesarias.",ben3:"Comunicación clara desde el primer contacto hasta el seguimiento.",ben4:"Enfoque en oportunidades calificadas, no en ruido.",ben5:"Diseñado para empresas que desean una divulgación directa y eficiente.",contact_title:"Contacto",contact_intro:"Si es comprador, proveedor o empresa explorando oportunidades comerciales, no dude en ponerse en contacto.",lbl_email:"Correo"
+      },
+      fr: {
+        lang_btn:"Langues",hero_headline:"Connecter acheteurs et fournisseurs sur des marchés B2B sélectionnés.",hero_sub:"Intermédiaire commercial indépendant spécialisé dans l'approvisionnement, la qualification et la coordination des transactions en phase initiale.",cta:"Contact",hero_role:"Intermédiaire Commercial B2B Indépendant",solutions_title:"Solutions",sol1:"Construire des cartes de marché autour de niches commerciales spécifiques.",sol2:"Rechercher des marchés et des niches commerciales sélectionnés.",sol3:"Identifier les acheteurs et fournisseurs pertinents.",sol4:"Qualifier les opportunités avant les présentations.",sol5:"Soutenir le flux de négociation en phase initiale.",sol6:"Aider à maintenir le processus clair et structuré.",markets_title:"Marchés",markets_body:"NumberTex opère dans des niches B2B sélectionnées, notamment les matériaux industriels, les matières premières, l'emballage et les matériaux liés au papier, les composants de fabrication et les opportunités commerciales orientées vers l'exportation.",approach_label:"Notre Approche",approach_title:"Étape par Étape",how_p1:"NumberTex se concentre sur l'intermédiation commerciale à haute conversion et à faible friction entre acheteurs et fournisseurs dans des niches B2B sélectionnées.",how_p2:"La première étape consiste à construire une carte claire du marché cible, en identifiant les vrais acheteurs et fournisseurs qui correspondent au produit, au prix et à la logistique.",how_p3:"Après validation, le focus sur la conversion maximale commence. La présentation est faite avec des termes clairs et documentés, et le suivi maintient la discussion commerciale en mouvement.",how_p4:"Cette approche est particulièrement efficace pour les entreprises dans l'exportation, l'approvisionnement, les matériaux industriels et les matières premières.",step1:"Construire des cartes de marché autour de niches commerciales spécifiques.",step2:"Étudier le marché, identifier les opportunités pertinentes et définir l'adéquation commerciale.",step3:"Qualification.",step4:"Présentation et suivi.",benefits_title:"Avantages",ben1:"Attention personnelle à chaque opportunité.",ben2:"Une structure lean sans couches inutiles.",ben3:"Communication claire du premier contact au suivi.",ben4:"Focus sur les opportunités qualifiées, pas sur le bruit.",ben5:"Conçu pour les entreprises souhaitant une approche directe et efficace.",contact_title:"Contact",contact_intro:"Si vous êtes acheteur, fournisseur ou entreprise explorant des opportunités commerciales, n'hésitez pas à nous contacter.",lbl_email:"Email"
+      },
+      it: {
+        lang_btn:"Lingue",hero_headline:"Connettere acquirenti e fornitori in mercati B2B selezionati.",hero_sub:"Intermediario commerciale indipendente focalizzato su approvvigionamento, qualificazione e coordinamento delle trattative nella fase iniziale.",cta:"Contatto",hero_role:"Intermediario Commerciale B2B Indipendente",solutions_title:"Soluzioni",sol1:"Costruire mappe di mercato attorno a nicchie commerciali specifiche.",sol2:"Ricercare mercati e nicchie commerciali selezionati.",sol3:"Identificare acquirenti e fornitori rilevanti.",sol4:"Qualificare le opportunità prima delle presentazioni.",sol5:"Supportare il flusso di negoziazione nelle prime fasi.",sol6:"Aiutare a mantenere il processo chiaro e strutturato.",markets_title:"Mercati",markets_body:"NumberTex opera in nicchie B2B selezionate, tra cui materiali industriali, materie prime, imballaggi e materiali correlati alla carta, componenti di produzione e opportunità commerciali orientate all'esportazione.",approach_label:"Il Nostro Approccio",approach_title:"Passo dopo Passo",how_p1:"NumberTex si concentra sull'intermediazione commerciale ad alta conversione e bassa attrazione tra acquirenti e fornitori in nicchie B2B selezionate.",how_p2:"Il primo passo è costruire una mappa chiara del mercato di riferimento, identificando acquirenti e fornitori reali che corrispondano al prodotto, al prezzo e alla logistica.",how_p3:"Dopo la validazione, il focus sulla conversione massima inizia. La presentazione viene effettuata con termini chiari e documentati e il follow-up mantiene in movimento la discussione commerciale.",how_p4:"Questo approccio è particolarmente efficace per le aziende nell'esportazione, nell'approvvigionamento, nei materiali industriali e nelle materie prime.",step1:"Costruire mappe di mercato attorno a nicchie commerciali specifiche.",step2:"Studiare il mercato, identificare le opportunità rilevanti e definire l'adattamento commerciale.",step3:"Qualificazione.",step4:"Presentazione e follow-up.",benefits_title:"Vantaggi",ben1:"Attenzione personale ad ogni opportunità.",ben2:"Una struttura snella senza livelli inutili.",ben3:"Comunicazione chiara dal primo contatto al follow-up.",ben4:"Focus sulle opportunità qualificate, non sul rumore.",ben5:"Costruito per aziende che vogliono un approccio diretto ed efficiente.",contact_title:"Contatto",contact_intro:"Se sei un acquirente, fornitore o azienda alla ricerca di opportunità commerciali, non esitare a contattarci.",lbl_email:"Email"
+      },
+      de: {
+        lang_btn:"Sprachen",hero_headline:"Käufer und Lieferanten auf ausgewählten B2B-Märkten verbinden.",hero_sub:"Unabhängiger Handelsvermittler mit Fokus auf Beschaffung, Qualifizierung und Koordination von Geschäften in der Frühphase.",cta:"Kontakt",hero_role:"Unabhängiger B2B-Handelsvermittler",solutions_title:"Lösungen",sol1:"Marktkarten für spezifische Handelsnischen erstellen.",sol2:"Ausgewählte Märkte und Handelsnischen recherchieren.",sol3:"Relevante Käufer und Lieferanten identifizieren.",sol4:"Möglichkeiten vor der Einführung qualifizieren.",sol5:"Den Verhandlungsfluss in der Frühphase unterstützen.",sol6:"Den Prozess klar und strukturiert halten.",markets_title:"Märkte",markets_body:"NumberTex ist in ausgewählten B2B-Nischen tätig, darunter Industriematerialien, Rohstoffe, Verpackungen und papierbezogene Materialien, Fertigungskomponenten und exportorientierte Handelsmöglichkeiten.",approach_label:"Unser Ansatz",approach_title:"Schritt für Schritt",how_p1:"NumberTex konzentriert sich auf hochkonvertierende, reibungsarme Handelsvermittlung zwischen Käufern und Lieferanten in ausgewählten B2B-Nischen.",how_p2:"Der erste Schritt besteht darin, eine klare Karte des Zielmarktes zu erstellen und echte Käufer und Lieferanten zu identifizieren, die Produkt, Preis und Logistik entsprechen.",how_p3:"Nach der Validierung beginnt der Fokus auf maximale Konvertierung. Die Einführung erfolgt mit klaren, dokumentierten Bedingungen und das Follow-up hält die kommerzielle Diskussion am Laufen.",how_p4:"Dieser Ansatz ist besonders effektiv für Unternehmen im Export, Beschaffung, Industriematerialien und Rohstoffe.",step1:"Marktkarten für spezifische Handelsnischen erstellen.",step2:"Den Markt studieren, relevante Möglichkeiten identifizieren und die kommerzielle Eignung definieren.",step3:"Qualifizierung.",step4:"Einführung und Follow-up.",benefits_title:"Vorteile",ben1:"Persönliche Aufmerksamkeit für jede Möglichkeit.",ben2:"Eine schlanke Struktur ohne unnötige Ebenen.",ben3:"Klare Kommunikation vom ersten Kontakt bis zum Follow-up.",ben4:"Fokus auf qualifizierte Möglichkeiten, kein Rauschen.",ben5:"Für Unternehmen, die direkte und effiziente Ansprache wünschen.",contact_title:"Kontakt",contact_intro:"Wenn Sie Käufer, Lieferant oder Unternehmen sind, das Handelsmöglichkeiten erkundet, melden Sie sich gerne.",lbl_email:"E-Mail"
+      },
+      zh: {
+        lang_btn:"语言",hero_headline:"连接精选B2B市场中的买家与供应商。",hero_sub:"独立商业中间商，专注于采购、资质认证及早期交易协调。",cta:"联系我们",hero_role:"独立B2B商业中间商",solutions_title:"解决方案",sol1:"围绕特定商业细分市场构建市场地图。",sol2:"研究精选市场和商业细分领域。",sol3:"识别相关买家和供应商。",sol4:"在介绍之前对机会进行资质认证。",sol5:"支持早期谈判流程。",sol6:"帮助保持流程清晰有序。",markets_title:"市场",markets_body:"NumberTex在精选B2B细分市场运营，包括工业材料、大宗商品、包装及纸张相关材料、制造业零部件以及出口导向型商业机会。",approach_label:"我们的方法",approach_title:"逐步流程",how_p1:"NumberTex专注于在精选B2B细分市场中进行高转化、低摩擦的贸易中介服务。流程从明确的目标开始，以从线索到对话的结构化路径结束。",how_p2:"第一步是建立目标市场的清晰地图，识别与产品、价格和物流相匹配的真实买家和供应商。",how_p3:"验证后，专注于最大转化率。介绍以清晰、有据可查的条款进行，后续跟进推动商业讨论向前发展。",how_p4:"这种方法对出口、采购、工业材料和大宗商品领域的企业尤为有效。",step1:"围绕特定商业细分市场构建市场地图。",step2:"研究市场，识别相关机会，确定商业契合度。",step3:"资质认证。",step4:"介绍与跟进。",benefits_title:"优势",ben1:"对每个机会给予个人关注。",ben2:"精简结构，无不必要层级。",ben3:"从首次联系到跟进的清晰沟通。",ben4:"专注于合格机会，而非噪音。",ben5:"专为希望直接高效拓展的企业打造。",contact_title:"联系我们",contact_intro:"如果您是买家、供应商或正在探索商业机会的企业，欢迎随时联系。",lbl_email:"电子邮件"
+      },
+      ru: {
+        lang_btn:"Языки",hero_headline:"Связываем покупателей и поставщиков на избранных рынках B2B.",hero_sub:"Независимый коммерческий посредник, специализирующийся на поиске поставщиков, квалификации и координации сделок на начальном этапе.",cta:"Контакт",hero_role:"Независимый коммерческий посредник B2B",solutions_title:"Решения",sol1:"Составлять карты рынка по конкретным коммерческим нишам.",sol2:"Исследовать избранные рынки и коммерческие ниши.",sol3:"Выявлять релевантных покупателей и поставщиков.",sol4:"Квалифицировать возможности до представления.",sol5:"Поддерживать переговорный процесс на начальном этапе.",sol6:"Помогать сохранять процесс чётким и структурированным.",markets_title:"Рынки",markets_body:"NumberTex работает в избранных нишах B2B, включая промышленные материалы, сырьевые товары, упаковку и бумажные материалы, производственные компоненты и коммерческие возможности, ориентированные на экспорт.",approach_label:"Наш Подход",approach_title:"Шаг за Шагом",how_p1:"NumberTex сосредоточен на высококонверсионном торговом посредничестве между покупателями и поставщиками в избранных нишах B2B.",how_p2:"Первый шаг — построить чёткую карту целевого рынка, определив реальных покупателей и поставщиков, соответствующих продукту, цене и логистике.",how_p3:"После валидации начинается фокус на максимальную конверсию. Представление осуществляется на чётких, задокументированных условиях, а последующее сопровождение поддерживает коммерческое обсуждение.",how_p4:"Этот подход особенно эффективен для компаний в сфере экспорта, закупок, промышленных материалов и сырья.",step1:"Составлять карты рынка по конкретным коммерческим нишам.",step2:"Изучать рынок, выявлять актуальные возможности и определять коммерческое соответствие.",step3:"Квалификация.",step4:"Представление и сопровождение.",benefits_title:"Преимущества",ben1:"Персональное внимание к каждой возможности.",ben2:"Стройная структура без лишних уровней.",ben3:"Чёткая коммуникация от первого контакта до последующего сопровождения.",ben4:"Фокус на квалифицированных возможностях, а не на шуме.",ben5:"Создано для компаний, желающих прямого и эффективного охвата.",contact_title:"Контакт",contact_intro:"Если вы покупатель, поставщик или компания, изучающая коммерческие возможности, свяжитесь с нами.",lbl_email:"Эл. почта"
+      },
+      vi: {
+        lang_btn:"Ngôn ngữ",hero_headline:"Kết nối người mua và nhà cung cấp trên các thị trường B2B được chọn lọc.",hero_sub:"Trung gian thương mại độc lập tập trung vào tìm nguồn cung ứng, xét duyệt và điều phối giao dịch giai đoạn đầu.",cta:"Liên hệ",hero_role:"Trung gian Thương mại B2B Độc lập",solutions_title:"Giải pháp",sol1:"Xây dựng bản đồ thị trường xung quanh các phân khúc thương mại cụ thể.",sol2:"Nghiên cứu các thị trường và phân khúc thương mại được chọn lọc.",sol3:"Xác định người mua và nhà cung cấp liên quan.",sol4:"Xét duyệt cơ hội trước khi giới thiệu.",sol5:"Hỗ trợ luồng đàm phán giai đoạn đầu.",sol6:"Giúp duy trì quy trình rõ ràng và có cấu trúc.",markets_title:"Thị trường",markets_body:"NumberTex hoạt động trong các phân khúc B2B được chọn lọc, bao gồm vật liệu công nghiệp, hàng hóa nói chung, bao bì và vật liệu liên quan đến giấy, linh kiện sản xuất và các cơ hội thương mại định hướng xuất khẩu.",approach_label:"Phương pháp của chúng tôi",approach_title:"Từng bước một",how_p1:"NumberTex tập trung vào trung gian thương mại có tỷ lệ chuyển đổi cao, ít ma sát giữa người mua và nhà cung cấp trong các phân khúc B2B được chọn lọc.",how_p2:"Bước đầu tiên là xây dựng bản đồ rõ ràng về thị trường mục tiêu, xác định người mua và nhà cung cấp thực sự phù hợp với sản phẩm, giá cả và logistics.",how_p3:"Sau khi xác nhận, trọng tâm vào chuyển đổi tối đa bắt đầu. Việc giới thiệu được thực hiện với các điều khoản rõ ràng, có tài liệu, và theo dõi duy trì cuộc thảo luận thương mại tiến triển.",how_p4:"Phương pháp này đặc biệt hiệu quả cho các công ty trong xuất khẩu, tìm nguồn cung ứng, vật liệu công nghiệp và hàng hóa.",step1:"Xây dựng bản đồ thị trường xung quanh các phân khúc thương mại cụ thể.",step2:"Nghiên cứu thị trường, xác định cơ hội liên quan và xác định sự phù hợp thương mại.",step3:"Xét duyệt.",step4:"Giới thiệu và theo dõi.",benefits_title:"Lợi ích",ben1:"Chú ý cá nhân đến từng cơ hội.",ben2:"Cấu trúc tinh gọn không có các lớp không cần thiết.",ben3:"Giao tiếp rõ ràng từ lần liên hệ đầu tiên đến theo dõi.",ben4:"Tập trung vào các cơ hội đủ tiêu chuẩn, không phải tiếng ồn.",ben5:"Được xây dựng cho các công ty muốn tiếp cận trực tiếp và hiệu quả.",contact_title:"Liên hệ",contact_intro:"Nếu bạn là người mua, nhà cung cấp hoặc công ty đang khám phá các cơ hội thương mại, hãy liên hệ với chúng tôi.",lbl_email:"Email"
+      }
+    };
+
+    function toggleLang() {
+      document.getElementById('langBar').classList.toggle('open');
+    }
+
+    function setLang(lang) {
+      const t = translations[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.getElementById('langLabel').textContent = t.lang_btn || 'Languages';
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes("'" + lang + "'"));
+      });
+      document.documentElement.lang = lang;
+      document.getElementById('langBar').classList.remove('open');
+    }
+
+    document.addEventListener('click', function(e) {
+      const bar = document.getElementById('langBar');
+      if (!bar.contains(e.target)) bar.classList.remove('open');
+    });
+  </script>
 </body>
 </html>
